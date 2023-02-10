@@ -27,4 +27,4 @@ def get_file_keywords(f):
       return ""
 
 def extract_cermine(path):
-    return str({"abstract":get_file_abstract(path),"keywords": get_file_keywords(path)})
+    return ({"abstract":get_file_abstract(path),"keywords": get_file_keywords(path)})
