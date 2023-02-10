@@ -1,0 +1,1399 @@
+<document>
+  <zone label="MET_TYPE">Mémoire de fin d'études</zone>
+  <zone label="MET_TITLE">Pour l'obtention du diplôme de Master en Informatique</zone>
+  <zone label="MET_AUTHOR">Option : Systèmes Informatiques et Logiciels (SL)</zone>
+  <zone label="MET_TITLE">Thème :
+Détection d'intrusions pour l'IoT en utilisant les algorithmes génétiques</zone>
+  <zone label="MET_AUTHOR">Réalisé par :
+−Boushaba Saadia</zone>
+  <zone label="MET_CORRESPONDENCE">Encadré par :</zone>
+  <zone label="MET_AUTHOR">− Mme MEZIANI Lila</zone>
+  <zone label="MET_ABSTRACT">Organisme d'accueil : Laboratoire de la Communication dans les systèmes
+Informatique (LCSI)</zone>
+  <zone label="MET_DATES">Promotion : 2021 / 2022</zone>
+  <zone label="MET_AUTHOR">Résumé</zone>
+  <zone label="MET_ABSTRACT">Avec le déploiement massif des objets IoT ces dernières années, les systèmes IoT deviennent de plus
+en plus complexes, ce qui rend leur gestion et leur sécurisation une tâche dificile à maintenir. L'évolution
+des attaques et des intrusions est liée à l'évolution des technologies et méthodes informatiques ce qui
+représente une grande menace de la vie privée des utilisateurs et peuvent causer des conséquences dramatiques.
+Les systèmes de détection traditionnels ne sont plus capables de s'adapter avec la complexité et
+l'hétérogénéité des systèmes IoT. Pour cela, plusieurs recherches sont orientées vers le développement des
+techniques de détection d'intrusions dans les systèmes IoT en combinant diférentes approches avancées
+comme l'apprentissage automatique et les algorithmes génétiques dans le but d'exploiter le maximum
+de performances ofertes par ces deux aspects afin d'être capable de détecter et de préserver des futures
+risques et attaques inattendus. L'objectif de ce master est d'étudier les systèmes de détection d'intrusion
+dans les environnements IoT qui utilisent les algorithmes génétiques sans ou avec l'apprentissage
+automatique, et comparer les diférents travaux et modèles existants.</zone>
+  <zone label="BODY_CONTENT">Mots clé : IoT, apprentissage automatique , algorithme génétique , intrusion , IDS
+Table des matières</zone>
+  <zone label="BODY_HEADING">Remerciements</zone>
+  <zone label="BODY_CONTENT">Introduction générale
+vi
+2
+1 Introduction à la sécurité d'IoT 4
+1.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+1.2 Définition de l'IoT . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+1.3 Définition des objets . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+1.4 Les domaines d'application de l'IoT . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+1.5 L'architecture des systèmes IoT . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+1.6 Les exigences de sécurité dans les systèmes IoT . . . . . . . . . . . . . . . . . . . . . . . . 7
+1.7 Les défis dans la sécurité IoT . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+1.8 Les types d'attaques dans les systèmes IoT . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+1.9 Les attaques par couche . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+1.9.1 Les attaques de la couche physique . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+1.9.2 Les attaques de la couche réseau . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+1.9.3 Les attaques de la couche perception . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+1.9.4 Les attaques de la couche application . . . . . . . . . . . . . . . . . . . . . . . . . 10
+1.10 Les mécanismes de défense traditionnels . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+1.11 Les systèmes de détection d'intrusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+1.11.1 L'architecture générale des IDSs . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+1.11.2 Les techniques de détection . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+1.11.3 Les types d'IDS . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+1.11.4 Les défis d'IDS . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14</zone>
+  <zone label="GEN_OTHER">i</zone>
+  <zone label="MET_BIB_INFO">TABLE DES MATIÈRES
+TABLE DES MATIÈRES</zone>
+  <zone label="BODY_CONTENT">1.11.5 Les datasets utilisés pour l'évaluation des IDSs . . . . . . . . . . . . . . . . . . . . 15
+1.11.5.1 DARPA . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+1.11.5.2 Caida . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+1.11.5.3 KDD . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+1.11.5.4 NSL-KDD . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+1.11.5.5 UNSW-NB15 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
+1.11.5.6 AFADA Linux . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
+1.11.6 Les métriques d'évaluation des systèmes IDS . . . . . . . . . . . . . . . . . . . . . 19
+1.11.6.1 Le rappel . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+1.11.6.2 La précision . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+1.11.6.3 F1 score . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+1.11.6.4 L'Accuracy(la précision) . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+1.11.6.5 L'erreur) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+1.12 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20</zone>
+  <zone label="GEN_REFERENCES">2 Les algorithmes génétiques et l'apprentissage automatiques 22
+2.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+2.2 Les algorithmes génétiques . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+2.2.1 Présentation des algorithmes génétiques . . . . . . . . . . . . . . . . . . . . . . . . 22
+2.2.2 La terminologie dans les algorithmes génétique . . . . . . . . . . . . . . . . . . . . 23
+2.2.3 Le fonctionnement des algorithmes génétiques . . . . . . . . . . . . . . . . . . . . . 23
+2.2.3.1 La préparation de la population initiale . . . . . . . . . . . . . . . . . . . 23
+2.2.3.2 La sélection . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25
+2.2.3.3 Le croisement . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 26
+2.2.3.4 La mutation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+2.3 L'apprentissage automatique . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+2.3.1 Les types d'apprentissage automatique . . . . . . . . . . . . . . . . . . . . . . . . . 28
+2.3.2 Les modèles d'apprentissage automatiques . . . . . . . . . . . . . . . . . . . . . . . 28
+2.3.2.1 Naive Bayes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+2.3.2.2 Les arbres de décision . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+2.3.2.3 Les forêts aléatoires . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+2.3.2.4 Extra-Trees . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29</zone>
+  <zone label="GEN_OTHER">ii</zone>
+  <zone label="MET_BIB_INFO">TABLE DES MATIÈRES
+TABLE DES MATIÈRES</zone>
+  <zone label="GEN_REFERENCES">2.3.2.5 SVM . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+2.3.2.6 k-means . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30
+2.3.3 Les réseaux de neurones artificiels . . . . . . . . . . . . . . . . . . . . . . . . . . . 30
+2.3.3.1 Définition . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30
+2.3.3.2 La structure générale d'un réseau de neurones artificiels . . . . . . . . . . 30
+2.3.3.3 Le fonctionnement d'un réseau de neurones . . . . . . . . . . . . . . . . . 31
+2.3.3.4 Les architectures du réseau de neurones . . . . . . . . . . . . . . . . . . . 33
+2.4 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 36
+3 Synthèse et étude comparative 37
+3.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 37
+3.2 Synthèse des travaux existants . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 37
+3.2.1 Travaux de détection d'intrusion basés sur le modèle SVM et l'algorithme génétique 37
+3.2.2 Travaux de détection d'intrusion basés sur le modèle réseau de neurones artificielles
+et l'algorithme génétique . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 39
+3.2.3 Travaux de détection d'intrusion basés sur le modèle amélioré de k-means et l'algorithme
+génétique . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 44
+3.2.4 Travaux de détection d'intrusion basés sur les modèle d'arbre et l'algorithme génétique 45
+3.3 Etude comparative . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+3.4 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51</zone>
+  <zone label="BODY_HEADING">Conclusion générale
+Bibliographie
+Webographie
+52
+54
+58</zone>
+  <zone label="GEN_OTHER">iii</zone>
+  <zone label="BODY_CONTENT">Table des figures
+1.1 Architecture générale des IDSs . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12</zone>
+  <zone label="GEN_REFERENCES">2.1 Architecture générale d'un AG . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+2.2 Exemple de la sélection par roulette . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25
+2.3 Exemple de la sélection par la méthode tournoi . . . . . . . . . . . . . . . . . . . . . . . . 26
+2.4 Exemple de la sélection par la méthode elitiste . . . . . . . . . . . . . . . . . . . . . . . . 26
+2.5 Exemple d'un croisement en un point . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+2.6 Exemple d'un croisement en deux point . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+2.7 Architecture générale d'un réseau de neurones . . . . . . . . . . . . . . . . . . . . . . . . . 31
+2.8 Architecture générale d'un réseau de neurones monocouche . . . . . . . . . . . . . . . . . 31
+2.9 Architecture générale d'un réseau de neurones multicouche . . . . . . . . . . . . . . . . . . 32
+2.10 Shéma explicatif des étapes d'entrainement d'un RNA . . . . . . . . . . . . . . . . . . . . 32
+2.11 Architecture générale d'un réseau convolutif . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+2.12 Architecture générale d'un réseau de neurone récurrent . . . . . . . . . . . . . . . . . . . . 34
+2.13 Architecture générale d'une carte auto-Adaptative . . . . . . . . . . . . . . . . . . . . . . 35
+2.14 Architecture générale de la machine de Boltzmann restreinte . . . . . . . . . . . . . . . . 36
+2.15 Architecture générale d'un réseau de croyance profond . . . . . . . . . . . . . . . . . . . . 36
+3.1 Shéma général de la solution proposée par Hosseinzadeh . . . . . . . . . . . . . . . . . . . 39
+3.2 Shéma général de la solution proposée par YING ZHANG . . . . . . . . . . . . . . . . . . 41
+3.3 Shéma général de la solution proposée par Moukhafi . . . . . . . . . . . . . . . . . . . . . 43</zone>
+  <zone label="GEN_OTHER">iv</zone>
+  <zone label="BODY_CONTENT">Liste des tableaux
+1.1 Tableau comparatif des dataests utilisés pour l'évaluation des IDSs . . . . . . . . . . . . . 19
+1.2 La matrice de confusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19</zone>
+  <zone label="GEN_REFERENCES">2.1 valeurs de fitness des individus de l'exemple . . . . . . . . . . . . . . . . . . . . . . . . . 25
+3.1 Résultats de performance de la solution proposé par Hosseinzadeh . . . . . . . . . . . . . 40
+3.2 Résultats de performance de la solution proposé par YING ZHANG . . . . . . . . . . . . 42
+3.3 Les résultats avec un sous ensemble de KDD-99 . . . . . . . . . . . . . . . . . . . . . . . 44
+3.4 Les résultats avec le datasets KDD-99 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
+3.5 Tableau comparatif des travaux existants . . . . . . . . . . . . . . . . . . . . . . . . . . . 50</zone>
+  <zone label="GEN_OTHER">v</zone>
+  <zone label="MET_BIB_INFO">Remerciements</zone>
+  <zone label="BODY_CONTENT">Tout d'abord, je remercie Allah de m'avoir donné le courage et la patience nécessaires à mener ce
+travail à son terme.
+Je tiens à remercier toutes les personnes qui ont contribué au succès de mon stage et qui m'ont aidée
+lors de la rédaction de ce mémoire.
+Je tiens à remercier particulièrement mon encadrante Madame Meziani Lila, pour la qualité de son
+suivi et son encadrement pour sa disponibilité et surtout ses judicieux conseils, qui ont contribué à
+alimenter ma réflexion. malgré les dificiles moments qu'elle a passés .
+Je remercie également toute l'équipe pédagogique de l'École nationale supérieure d'informatique (ESI),
+pour avoir assuré la méthodologie de recherche et rédaction tout en long de notre formation master et
+pour avoir .
+Et bien sur merci à mes parents pour leur soutien constant et leurs encouragements.</zone>
+  <zone label="GEN_OTHER">vi</zone>
+  <zone label="BODY_CONTENT">Liste des sigles et acronymes
+HIDS
+IDS
+DIDS
+IPS
+AIDS
+SIDS
+NIDS
+SOA
+AG
+DBN
+DT
+RF
+ET
+XGB
+PMC
+Host Intrusion Detection Systems
+Intrusion Detection System
+Distributed Intrusion Detection System
+Intrusion Prevention system
+Anomaly-based Intrusion Detection
+Signature-based Intrusion Detection
+Network Intrusion Detection System
+Service-oriented architecture
+Algorithme Génétique
+Deep Belief Network
+Decision Tree
+Random forests
+Extra-trees
+XGBoost
+Partially Method Crossover</zone>
+  <zone label="GEN_OTHER">1</zone>
+  <zone label="MET_BIB_INFO">Introduction générale</zone>
+  <zone label="BODY_CONTENT">La technologie a connu une grande évolution les dernières années, de manière que nous la voyons
+dans tous les aspects de notre vie. Et dans nos jours, nous avons atteint la notion des villes intelligentes,
+des fermes intelligentes, des maisons intelligentes, ...etc. Tout devient intelligent et connecté via internet,
+c'est la notion de l'internet des objets ou l'IoT.
+L'IoT est un domaine qui a changé la vision du monde entier et il a créé des ambitions très élevées
+en ce qui concerne la qualité de vie de l'être humain, dès son apparition et les chercheurs essayent
+de les introduire dans tous les aspects de la vie. Tout devient connecté via internet et capable d'être
+géré sans l'intervention de l'être humain. Bien que cette technologie a facilité plusieurs aspects de notre
+vie, avec l'augmentation de ses utilisations, les systèmes IoT deviennent de plus en plus complexes et
+dificiles à gérer . Le grand nombre de communications via l'internet causés par le grand nombre d'objets
+qui utilisent cette technologie génère un risque de confidentialité et de sécurité qui peut afecter la vie
+humaine et causer des dégâts graves (Maleh, 2020).
+Les questions concernant la sécurité et la fiabilité des données transmises vers et depuis les appareils
+IoT deviennent rapidement une préoccupation majeure, plusieurs recherches et études ont essayé d'assurer
+et d'améliorer la sécurité dans les systèmes IoT mais malheureusement il reste beaucoup à faire
+(Gokhale, Bhat, &amp; Bhat, 2018). L'apparition de l'apprentissage automatique a permis d'améliorer beaucoup
+de domaines technologiques à travers son application et sa capacité de s'adapter et de se combiner
+avec d'autres technologies ou domaines, ce qui permet soit d'améliorer la performance ou d'automatiser le
+processus. La détection des intrusions dans les systèmes IoT est l'un des domaines qui ont bénéficié de cet
+avantage. Beaucoup de travaux ont adopté l'approche d'utilisation des modèles d'apprentissage automatique
+et d'apprentissage profond afin d'assurer une meilleure précision de détection et une consommation
+minimale des ressources, et bien sûr l'autonomie des systèmes.
+Comme l'évolution technologique se développe toujours, l'IoT est l'un des domaines qui ont connu
+une vaste utilisation ces dernières années, ce qui a mené à une augmentation dans le nombre des objets
+connectés, et une grande consommation d'énergie dans le monde entier. Cela a motivé les chercheures
+à penser non seulement à trouver des nouvelles solutions pour ces problèmes mais aussi des solutions
+qui soient optimales et qui nécessitent un coût minimal (de temps et d'énergie), et certains efors sont
+fournis afin d'améliorer les solutions existantes, pour s'adapter au grand changement des technologies et
+de l'environnement d'application .
+Plusieurs recherches ont essayé d'exploiter les performances des algorithmes d'optimisation comme
+les algorithmes génétiques dans les systèmes de détection d'intrusions en les combinant avec les modèles</zone>
+  <zone label="GEN_OTHER">2</zone>
+  <zone label="BODY_HEADING">LISTE DES TABLEAUX</zone>
+  <zone label="BODY_CONTENT">d'apprentissage automatique. Cette approche a donné pas mal de résultats intéressants en termes de
+performances et de précision.
+Dans ce rapport, nous allons faire une étude comparatives des travaux existants des systèmes de
+détection d'intrusion dans le domaine des IoTs, mais avant tout nous allons introduire la notion des
+IoT et la sécurité dans des systèmes IoT, ensuite nous allons aborder les techniques d'apprentissage
+automatique et les fondamentaux des algorithmes génétiques, et bien sur la combinaison entre les deux
+aspects.</zone>
+  <zone label="GEN_OTHER">3</zone>
+  <zone label="BODY_HEADING">Chapitre 1</zone>
+  <zone label="BODY_CONTENT">1.1
+Introduction
+Introduction à la sécurité d'IoT
+Dans ce premier chapitre, nous allons donner une étude introductive à la sécurité des systèmes IoT,
+en commençant par des généralités sur l'IoT, son architecture et ses domaines d'application, ensuite nous
+allons présenter les exigences nécessaires pour garantir la sécurité des systèmes IoT et les défis qui font
+face contre la réalisation de ces exigences. Après, nous allons citer les diférentes attaques et intrusions
+qui peuvent menacer et attaquer les systèmes IoT et les diférents mécanismes de défense traditionnels
+et récents utilisés pour protéger ces systèmes, détecter ou bien lutter contre les attaques. et à la fin nous
+allons aborder les systèmes de détection d'intrusions comme un mécanisme récent de défense.
+1.2
+Définition de l'IoT
+La notion d'IoT (internet of thing en anglais ) ou l'internet des objets est utilisé pour la première fois
+par Kevin Ashton en 1999, il a définit l'IoT comme des objets connectés identifiables de manières unique
+avec la technologie de l'identification par radiofréquence (RFID) (Gokhale et al., 2018). Le terme IoT a
+connu un grand développement depuis son apparition et jusqu'aux nos jours en suivant l'évolution des
+technologies utilisés.
+Nous trouvons plusieurs définitions du terme IoT dans la littérature selon plusieurs aspects et chacune
+montre une de ses caractéristiques qu'elles sont développées au cours du temp, nous allons aborder
+quelques unes :
+ITU-T qui a défini l'IoT comme «une infrastructure mondiale pour la société d'information
+, permettant d'appliquer les services avancés en interconnectant des objets (physiques
+et virtuels) basées sur des technologies d'information et de communication interopérables
+existantes et en évolutive.» Cette définition nous a montré la largeur et la globalité de IoT, à travers
+la communication entre les objets qu'ils peuvent être physiques ou virtuels. (Czekalski et al., 2019)
+IBM a défini L'IoT comme étant : «la gamme croissante d'appareils connectés à l'internet qui
+capturent ou génèrent une énorme quantité d'informations chaque jour»(Firouzi, Farahani,</zone>
+  <zone label="GEN_OTHER">4</zone>
+  <zone label="BODY_HEADING">1.3 Définition des objets</zone>
+  <zone label="BODY_CONTENT">Weinberger, DePace, &amp; Aliee, 2020) la définition montre une des caractéristiques les plus importantes de
+l'IoT qui est la communication d'un grand nombre des données et informations entre les objets connectés.
+Afin d'assurer une communication eficace et correcte, et contrôlable entre les objets il faut qu'ils (les
+objets)soient identifiables de manière unique, c'est ce que la définition de IDC montre : «un réseau de
+réseaux de points de terminaison identifiables de manière unique qui communiquent sans
+interaction humaine en utilisant la connectivité IP (locale ou mondiale).»
+De manière générale, IoT désigne un réseau des objets physiques connectés à l'internet qui peuvent
+communiquer entre eux de manière autonome en utilisant des protocoles de communication. Son objectif
+est de rendre les objets connectés n'importe quand, et n'importe où, avec n'importe quoi et n'importe
+qui en utilisant n'importe quel chemin/réseau . La communication dans les systèmes IoT peut être entre
+personnes, entre personnes et machines/choses ou bien entre les machines/choses (Patel, Patel, et al.,
+2016).
+1.3
+Définition des ob jets
+Pour mieux comprendre le concept de l'IoT et son fonctionnement, il faut d'abord préciser ce que
+signifie le mot “Objet” dans l'internet des objets. Actuellement les objets de IoT deviennent plus larges,
+ils ne se limitent pas aux objets physiques ou les appareils électroniques mais ils comportent aussi les
+objets virtuels et les objets non électroniques, les données, les être humains, les plantes, les animaux . . .
+et tous ces objets sont connectés via internet en utilisant des applications et des services.(Czekalski et
+al., 2019)
+De manière générale, il désigne tout objet lisible, reconnaissable, localisable, adressable via un dispositif
+de détection d'informations et/ou contrôlable via internet, il nécessite l'énergie et la puissance de
+calcul pour assurer la communication des données avec d'autres objets. (Patel et al., 2016),(Firouzi et
+al., 2020)
+Généralement, nous pouvons distinguer trois types d'objets : (Czekalski et al., 2019)
+• Les objets passifs :c'est des objets qui sont étiquetés avec des éléments RFID qui peuvent atteindre
+les 6 à 7 mètres, ils n'ont pas besoin d'alimentation électrique et ils répondent avec des
+massages coûteux.
+• Les objets actifs :ce sont des objets qui contiennent des capteurs et capables d'analyser les informations
+reçues de l'environnement et générer d'autres données. Ces données peuvent être envoyées
+vers une base de données ou vers le cloud.
+• Les objets autonomes :ce sont des objets qui ne nécessitent pas un contrôle pour réaliser des
+tâches et prendre des décisions.
+1.4
+Les domaines d'application de l'IoT
+L'IoT devient dans nos jours sans limite d'applications, cette technologie a touché tous les domaines
+de la vie de la simple tâche quotidien dans la maison jusqu'à la gestion des villes intelligentes, parmi les</zone>
+  <zone label="GEN_OTHER">5</zone>
+  <zone label="MET_BIB_INFO">Chapitre 1 : Introduction à la sécurité d'IoT</zone>
+  <zone label="BODY_CONTENT">grandes récentes applications de l'internet d'objets on trouve : (Czekalski et al., 2019)
+- Les maisons intelligentes
+- Smart water
+- Les compteurs intelligents
+- Les villes intelligentes comprennent les logistiques,le transport ..
+- L'élevage intelligent
+- Les fermes intelligentes
+- L'IoT industrielle
+- Les fermes intelligentes
+- La santé et le bien-être
+- Les environnements intelligents
+- La robotique
+- La gestion d'énergie .
+- Les réseaux intelligents
+1.5
+L'architecture des systèmes IoT
+Nous pouvons voir les systèmes IoT comme étant une composition de quatre couches logiques : la
+couche de détection, la couche de réseau, la couche de service et la couche interface. Chacune des couches
+possède ses propres caractéristiques de fonctionnement et chaque couche communique avec la couche
+adjacente.
+• La couche de détection : pour le bon fonctionnement du système IoT les objets nécessitent une
+communication continue et en temp réel entre eux pour échanger les données et les informations,
+pour qu'un objets communique avec un autre ou un groupe d'objets, ces derniers doivent être
+détectables et identifiables afin de les contrôler et les suivre, chaque objet possède un identifiant
+unique UUID (universal unique identifier en anglais )qui peut contenir son adresse et son nom.
+(Gokhale et al., 2018)
+• La couche réseaux :la communication des objets se fait via un réseau qui peut identifier, mapper
+et attribuer des tâches à ces objets en prenant en considération qu'ils peuvent être loin l'un de
+l'autre et séparés entre eux par une grande distance.(Gokhale et al., 2018)
+• La couche service :le rôle de cette couche est de chercher les applications d'IoT compatible avec
+un service et ses informations, elle valide les communications entre les objets connectés et décrit les
+relations entre eux. toues les actions de gestion de l'information, la recherche de communication,
+stockage et l'échange de données se fait dans cette couche.(Gokhale et al., 2018)
+• La couche interface :cette couche est la responsable de la gestion des informations et communication
+entre les objets ayant des standard diférents, elle s'exécute au niveau frontend des applications
+ou les apis.(Gokhale et al., 2018)</zone>
+  <zone label="GEN_OTHER">6</zone>
+  <zone label="BODY_HEADING">1.6 Les exigences de sécurité dans les systèmes IoT</zone>
+  <zone label="BODY_CONTENT">1.6
+Les exigences de sécurité dans les systèmes IoT
+Pour assurer la haute sécurité dans les systèmes IoT, il faut prendre en considération les exigences de
+sécurité suivantes :
+• La confidentialité : il s'agit de la protection des données contre les utilisateurs inappropriés en
+appliquant des mécanismes de cryptage et de chifrement pour garantir la confidentialité des données
+(Khan &amp; Salah, 2018).
+• L'intégrité des données :L'intégration diversifié des services, appareils et réseau, rend les données
+stockées vulnérables à la violation de leurs intégrités (Khan &amp; Salah, 2018), donc il faut assurer
+que les données communiquées via le réseau ne sont pas modifiées, dupliquées ou supprimées par
+un malveillant durant la transmission. (Driss, Hasan, Boulila, &amp; Ahmad, 2021) (Varanasi &amp; Razia,
+2019)
+• L'authentification : l'authentification sert à assurer que l'identité de l'utilisateur est certaine
+(Varanasi &amp; Razia, 2019) afin d'assurer aussi la sécurité des communications dans l'IoT. La diversité
+et l'hétérogénéité des architectures des systèmes IoT nécessitent une diversité des mécanismes
+d'authentification, ce qui représente un défi de détermination d'un protocole standard et global
+pour l'authentification dans l'IoT (Khan &amp; Salah, 2018).
+• L'autorisation :comme l'authentification, l'autorisation assure que l'accès aux systèmes IoT est
+fourni sauf pour les personnes autorisées, de plus la comptabilisation de l'utilisation des ressources,
+ainsi que la création des rapports fournissent un mécanisme fiable pour sécuriser la gestion du réseau
+(Khan &amp; Salah, 2018).
+• La non-répudiation :c'est le fait d'assurer que l'utilisateur ne peut pas nier l'utilisation de réseau
+ou une action qu'il l'a fait. (Rayes &amp; Salam, 2017)
+• La confidentialité de la transmission (Forward Secrecy) : assurer que si un objet a quitté
+un réseau, il ne va pas comprendre la communication échangée après sa départure. (Rayes &amp; Salam,
+2017)
+• Le secret en amont (Backward Secrecy) :il faut assurer que si un nouvel objet a rejoint le
+réseau, il ne pourra pas comprendre la communication échangée avant de se joindre. (Rayes &amp;
+Salam, 2017)
+• La disponibilité des services : il faut s'assurer que les services sont disponibles tout le temps
+et ils ne sont pas interrompus en assurant une bonne protection contre les attaques qui peuvent
+entraver la fourniture de services. (Varanasi &amp; Razia, 2019)
+1.7
+Les défis dans la sécurité IoT
+La connexion via internet rend plusieurs systèmes menacés par les attaques et les piratages qui peuvent
+causer des conséquences et des dégâts matériaux et humains très graves. L'IoT est l'une de ces systèmes
+qui sont vulnérables aux intrusions et aux anomalies. Les attaques dans les environnements qui utilisent la
+technologie de l'internet des objets ciblent principalement les aspects de sécurité comme l'identification,
+l'autorisation, l'accessibilité, la confidentialité et l'intégrité.</zone>
+  <zone label="GEN_OTHER">7</zone>
+  <zone label="MET_BIB_INFO">Chapitre 1 : Introduction à la sécurité d'IoT</zone>
+  <zone label="BODY_CONTENT">Il existe plusieurs défis et obstacles qui rendent l'assurance de la sécurité dans les systèmes IoT une
+mission très dificile et coûteuse nous citons :
+• La nature des systèmes IoT :les systèmes IoT sont des systèmes fortement distribués et hétérogènes,
+ils utilisent diférentes domaines de communications, diférentes technologies et protocoles,
+leurs données sont stockées dans diférentes bases de données ce qui rend les anciens systèmes
+et les mécanismes de sécurité standards pour IoT moins eficaces ou non directement applicables
+(Mohamed, Otsuka, &amp; Ito, 2018). De plus, les microservices utilisés par ces systèmes communiquent
+via des API indépendantes de l'architecture de la machine ou langage de programmation, ce qui
+augmente le nombre des points critiques et ajoute plus de dificultés pour assurer la sécurisation de
+ces systèmes (Chaabouni, 2020).
+• Les vulnérabilités des conteneurs :les conteneurs ont connu une vaste utilisation grâce aux simplifications
+qu'ils ont apportées dans le développement, le test et le déploiement des applications et
+les services. Ils sont utilisés aussi dans le domaine de l'IoT pour les mêmes raisons. La gestion et
+l'orchestration des conteneurs nécessitent une communication qui apporte des données très importantes
+qu'elles devient une cible pour les hackers et les pirates. Le piratage de ces conteneurs peut
+faciliter l'accès vers les autres parties de systèmes IoT comme les appareils (Driss et al., 2021).
+• La menace de la sécurité dans le cloud :avec l'augmentation du nombre de capteurs causé
+par l'augmentation du nombre d'objets IoT, il y aura une quantité énorme de données générées ou
+captées. La capacité des bases de données traditionnelles ne sufit pas pour stocker cette quantité,
+c'est pour cette raison que la plupart des architectures IoT utilisent le cloud pour le stockage
+de leurs données (Czekalski et al., 2019). L'utilisation de cloud ne se restreint pas seulement au
+stockage de données, mais elle comprend aussi la création, l'exécution et le déploiement des entités
+distribuées et évolutives des systèmes IoT. Bien que cette approche d'utilisation du cloud a porté
+beaucoup d'avantages aux systèmes IoT, elle reste une cible précieuse pour les pirates informatiques
+et les attaques, vu qu'elle contient énormément de données et informations qui peuvent causer des
+dommages terribles, et de dysfonctionnement de ces systèmes.
+• La limitation de ressources et capacité de calcul :les systèmes IoT sont limités en ce qui
+concerne leurs capacité de calcul ça revient au fait que les appareils IoT (ou les objets IoT ) sont
+à faible consommation d'énergie et ils ne disposent pas des équipements informatiques nécessaires
+pour efectuer des calculs complexes qui servent à la mise en oeuvre des algorithmes de chifrement et
+d'authentification par exemple en temps réel (Chaabouni, 2020). Les ressources comme la capacité
+de mémoire, l'autonomie de la batterie et la bande passante du réseau sont aussi limités dans ces
+systèmes (IoT), alors que les systèmes traditionnels existants de sécurisations sont gourmandes en
+ressources, ce qui les pousse à exploiter les performances de cloud mais ça revient au problème
+précédent que nous avons cité à savoir les menaces relatives à l'utilisation du cloud(Chaabouni,
+2020).
+• Le manque de datasets publiques :un autre problème que rencontre les chercheurs dans ce
+domaine c'est le manque de datasets publiques et mises à jour, ce qui rend la recherche plus complexe
+et dificile à tester (Maleh, 2020).
+• Emplacements éloignés :sachant que les systèmes IoT servent à connecter les objets qui peuvent
+être situé n'importe où via l'internet, et dans la plupart de temps la localisation de l'appareil est</zone>
+  <zone label="GEN_OTHER">8</zone>
+  <zone label="BODY_CONTENT">1.8 Les types d'attaques dans les systèmes IoT
+dificile. Les attaquants peuvent prendre cette chance et attaquer les objets IoT sans être vus. C'est
+pour ça que les systèmes de cyber sécurités physiques doivent être installés dans un endroit protégé.
+(Rayes &amp; Salam, 2017)
+• Le service sensible aux délais :le délai de service est une propriété très importante dans les
+systèmes IoT, il faut les protéger de toutes attaques qui peuvent influencer le temps de service de
+ces systèmes. (Rayes &amp; Salam, 2017)
+1.8
+Les types d'attaques dans les systèmes IoT
+Les attaques dans l'IoT sont classées en deux catégories principales, les cyber-attaques et les attaques
+physiques. Les attaques physiques sont des attaques qui touchent la partie hardware du système, leurs objectifs
+est d'interrompre le fonctionnement du système par destruction ou causer des dommages physiques
+au niveau des appareils connectés.
+Par contre les cyberattaques sont des attaques qui servent à afecter le réseau IoT par la manipulation,
+la suppression ou la modification des données et des informations collectées ou communiquées. On
+distingue deux sous types dans cette catégories d'attaques , les attaques passives qui visent à collecter et
+exploiter les donnés à partir des objets connectés. Et les attaques actives, qui visent à accéder au réseaux
+de systèmes et attaquer ses données de configuration afin d'interrompre ses services. (Mandal, Rajkumar,
+Ezhumalai, Jayakumar, &amp; Yuvarani, 2020)
+1.9
+Les attaques par couche
+Dans cette partie, nous présentons les diférentes attaques dans le domaine de l'IoT selon les couches
+de l'architecture IoT.
+1.9.1
+Les attaques de la couche physique
+• Les dommages physiques : ce sont des attaques physiques causées par des gens qui endommage
+les capteurs et les équipements physiques.
+• Le gaspillage d'énergie : pour qu'un objet fonctionne normalement il nécessite de l'énergie,
+une des méthode de conservation d'énergie est de basculer les objets sur diférents modes de
+consommation d'énergie, Une attaque par privation de sommeil fait juste assez de requêtes légitimes
+pour empêcher un appareil d'entrer dans son mode d'économie d'énergie ce qui influence son
+fonctionnement.(Maleh, 2020)
+1.9.2
+Les attaques de la couche réseau
+• Le transfert sélectif : il consiste à sélectionner des paquets pour les supprimer et laisser d'autres.
+Des paquets supprimés peuvent contenir des informations très importantes, ce qui peut influencer
+le fonctionnement du système.</zone>
+  <zone label="GEN_OTHER">9</zone>
+  <zone label="MET_BIB_INFO">Chapitre 1 : Introduction à la sécurité d'IoT</zone>
+  <zone label="BODY_CONTENT">• Hello Flood : chaque noeud s'introduit à son voisin pour l'identifier, les attaquants profitent de
+cette propriété et l'utilisent pour rendre un noeud commettant un noeud voisin de tous les noeuds
+(Maleh, 2020).
+• Sinkhole : c'est une attaque qui influence le routage par rendre un noeud averti par lui même comme
+étant un parent préféré et choisi par les autres noeuds (alors qu'il n'est pas ) (Maleh, 2020), il s'agit
+d'une attaque qui influence la transmission des données en faisant passer des paquets malveillants
+et en rejetant les paquets importants(Chaabouni, 2020).
+• Blackhole : cette attaque consiste à supprimer les paquets reçus à partir des objets voisins (Rayes
+&amp; Salam, 2017), ce type d'attaque devient très dangereux s'il est combiné avec d'autres attaques
+comme sinkhole car il peut supprimer les informations les plus importantes et il va déstabiliser le
+réseau.(Maleh, 2020)
+• L'attaque DDoS : l'attaque par déni de service distribué (the distributed denial of service attack),
+est une attaque qui cible la consommation de temps CPU ou la bande passante des ressources de
+réseau des utilisateurs légitimes (Chaabouni, 2020). Elle rend les noeuds non valables et elle peut
+afecter n'importe quelle couche, de plus il est très facile de l'implémenter .(Maleh, 2020)
+1.9.3
+Les attaques de la couche perception
+•
+Eavesdropping : puisque la communication entre les objets connectés se fait à travers l'internet
+donc il y a le risque de collecter des informations des utilisateurs (Shahid, 2021).
+• Snifing : il consiste à mettre un objet malveillant proche des capteurs normaux des appareils IoT
+pour influencer le fonctionnement du système (Maleh, 2020). L'attaquant dans ce cas essaye de
+renifler les paquets qui sont échangés entre la source et la destination.(Rayes &amp; Salam, 2017)
+• Le bruit dans les données :dans le réseau Wireless, les objets sont loins l'un de l'autre et
+donc leurs communications se fait à une grande distance par conséquence il peut arriver que les
+informations soient incomplètes ou falsifiées avant qu'elles atteignent la destination (Maleh, 2020).
+1.9.4
+Les attaques de la couche application
+• L'authentification des données : la collecte des informations peut se faire dans n'importe quel
+temps, mais il faut vérifier avant tout la source des données collectées sinon il y aura un risque
+d'attaque externe (Maleh, 2020).
+• Le code malveillant : c'est un code nuisible qui utilise une vulnérabilité logicielle connue pour se
+propager vers des dispositifs d'attaque internets embarqués en exécutant un système d'exploitation
+particulier pour linux par exemple (Maleh, 2020).
+• La falsification des applications basées sur les noeuds : il s'agit d'une exploitation de la
+vulnérabilité des applications sur les noeuds des appareils et l'installation des rootkits malveillants
+(Maleh, 2020).</zone>
+  <zone label="GEN_OTHER">10</zone>
+  <zone label="BODY_HEADING">1.10 Les mécanismes de défense traditionnels</zone>
+  <zone label="BODY_CONTENT">1.10
+Les mécanismes de défense traditionnels
+Plusieurs mécanismes sont utilisés dans la protection des systèmes IoT, nous citons parmi eux :
+• Le filtrage des paquets : (Chaabouni, 2020) :Ce mécanisme est utilisé surtout pour défendre
+contre les attaques de spoofing , et DDos. Nous trouvons deux types de filtre :
+- Le filtrage d'entrée : ce type de filtrage consiste à filtrer les paquets entrants en bloquant
+les paquets provenant de l'extérieur du réseau à travers une adresse source interne au réseau.
+- Le filtrage sortie : par contre ce type consiste à filtrer les paquets sortant de réseau et
+bloquer les adresse source qui n'est pas à l'intérieure de réseau afin de se protéger des attaques
+internes des machines externes.
+• Les protocoles cryptographiques, le cryptage du stockage des donnés ou des réseaux
+privés virtuels(VPN) : ce mécanisme garantit que les données, le code, les mise à jour sont
+cryptés et ne sont pas exploitables sans autorisation, et il préserve la confidentialité et la vie privée
+(Chaabouni, 2020). Plusieurs architectures et travaux utilisent le cryptographie harmonique qui
+consiste à efectuer des opérations directement sur les données et les informations chifrées (Godquin,
+2020). Le VPN assure la communication sécurisée entre les périphériques en créant un lien virtuel
+privé qui sert à chifrer les données communiquées (Chaabouni, 2020).
+• L'activité d'audit et de journalisation : il est essentiellement utilisé dans les serveurs web,
+les bases de données et les applications. Il consiste à détecter les anomalies à travers le suivi des
+traces des activités efectuées comme la connexion et la déconnexion, l'accès aux fichiers. . . etc
+(Chaabouni, 2020). L'assurance qu'aucune violation de sécurité est produite se fait à travers la
+consultation fréquente des journaux.
+• L'Empêchement des intrusions avec IPS (intrusion Prevention system) : IPS c'est un
+IDS (système de détection d'intrusion) d'origine, il ne détecte pas seulement les intrusions et les
+attaques mail ils peuvent les empêcher ou les bloquer aussi. Ces systèmes fournissent une protection
+des appareils non seulement dans l'IoT contre les tentatives de prise de contrôle, mais aussi contre
+l'utilisation malveillante.(Zitta et al., 2018)
+•
+La détection d'intrusion en utilisant les IDSs : c'est un système qui peut être matériel
+ou logicielle qui sert à détecter les intrusions et les attaques dans un réseau, en analysant le trafic
+réseau et tester par la suite est ce qu'il est normal ou variant.(David, 2018)
+1.11
+Les systèmes de détection d'intrusion
+Les systèmes de détection d'intrusion ou bien les IDSs sont des systèmes qui servent à surveiller
+les événements de réseau, le trafic de réseau ou même les fichiers de système, en capturant une copie
+de trafic et ensuite l'analyser afin de détecter les activités potentiellement dangereuses. Les activités
+détectées émettent des alertes qui seront signalées à l'administrateur ou bien au système de gestion des
+informations de sécurité et des événements contrôlé de manière centralisée. (Elrawy, Awad, &amp; Hamed,
+2018) (David, 2018)</zone>
+  <zone label="GEN_OTHER">11</zone>
+  <zone label="MET_BIB_INFO">Chapitre 1 : Introduction à la sécurité d'IoT</zone>
+  <zone label="BODY_CONTENT">1.11.1
+L'architecture générale des IDSs
+Figure 1.1 - Architecture générale des IDSs
+L'architecture des systèmes de détection d'intrusion est décomposée de deux grands modules : l'événement
+d'une sonde et l'environnement de gestion comme le montre la figure Figure 1.1( Web 13 , s. d.). Les
+capteurs dans l'événement d'une sonde servent à surveiller le comportement (ou l'activité) du système
+en récoltant des données brutes provenant d'une source de données et en fournissant un ensemble des
+événements à l'analyseur afin d'analyser et de suivre les évolutions du système et ces services. (Vijayarani,
+Sylviaa, et al., 2015)
+L'analyseur est le responsable de la détection des comportements anormaux et malveillants à partir
+des données transmises par les capteurs après la sélection des caractéristiques .
+Le rôle du manager est la réaction aux déclarations de détection d'intrusion dans le système en utilisant
+diférents mécanismes, soit par exemple une alerte qui peut être une notification (notification mail) ou
+par une activation d'un système de défense comme le firewall pour empêcher les intrusions de traverser
+le système, ou bien par la suppression des paquets dangereux. . . etc(Tesink, 2007)
+1.11.2
+Les techniques de détection
+Il existe plusieurs techniques de détection d'intrusions qui peuvent être divisées en quatre catégories :
+• Techniques de détection basées sur les signatures : une signature fait référence au comportement
+du système et du réseau qui se produit généralement lorsque des attaques d'un certain type
+sont lancées (Khraisat, Gondal, Vamplew, Kamruzzaman, &amp; Alazab, 2019). Ce type de technique
+contient un référentiel de signatures d'attaques avec lesquelles il compare le trafic réseau ou les ac-</zone>
+  <zone label="GEN_OTHER">12</zone>
+  <zone label="BODY_HEADING">Chapitre 3</zone>
+  <zone label="BODY_CONTENT">3.1
+Introduction
+Synthèse et étude comparative
+Les recherches dans le domaine de détection d'intrusion sont nombreuses et montrent des performances
+eficaces et satisfaisantes, nous allons présenter les principaux travaux récents basés sur l'utilisation des
+algorithmes génétiques et les modèles d'apprentissage automatique en expliquant brièvement leur fonctionnement
+et les résultats obtenus. Ensuite nous allons présenter un tableau comparatif qui va résumer
+tous les travaux.
+3.2
+Synthèse des travaux existants
+Nous allons exposé dans cette partie les diférents travaux catégorisés par modèle d'apprentissage
+automatique :
+3.2.1
+Travaux de détection d'intrusion basés sur le modèle SVM
+rithme génétique
+et l'algo(Tao,
+Sun, &amp; Sun, 2018) ont proposé une solution qui utilise l'AG pour optimiser les sous-ensembles
+d'entités, les poids et les paramètres du modèle SVM afin d'augmenter les performances de l'algorithme
+et le nombre des vrais positives et diminuer le taux d'erreur. La solution proposée sert à optimiser
+aussi la probabilité de croisement et la probabilité de mutation selon la valeur de fitness et l'algèbre
+évolutive. Ils ont utilisé la méthode de Touroi dans la sélection des meilleurs individus qui vont participer
+à la génération des nouvelles populations. La probabilité du croisement optimisée et utilisée dans cette
+solution est données par la formule 3.1 :
+PC = PC0 +2 PC1 = (( NN− n PCmax + Nn P2Cmin) + Pcmfamxa.fxmin )
+(3.1)
+Pcmax et Pcmax représentent respectivement la valeur max et la valeur min de la probabilité de
+croisement, fmax et fmin est la valeur max et la valeur min de fitness du cut-of pour la population</zone>
+  <zone label="GEN_OTHER">37</zone>
+  <zone label="MET_BIB_INFO">Chapitre 3 : Synthèse et étude comparative</zone>
+  <zone label="BODY_CONTENT">courant. n est la valeur courante de l'algèbre évolutive et N représente la valeur de l'algèbre évolutive de
+toute la population. La valeur de Pc0 diminue avec l'augmentation de la valeur de l'algèbre évolutive, et
+la valeur de Pc1 diminue lorsque la moyenne de fitness converge vers la solution optimale.
+Cette probabilité est inversement proportionnelle avec la moyenne des valeurs de fitness, elle est
+augmentée lorsque la moyenne de fitness est diminuée, et elle est diminuée lorsque la moyenne de fitness
+s'approche de la solution optimale.
+Comme la mutation sert à enrichir la population avec des nouveaux individus donc il est intéressant
+de choisir une large probabilité de mutation. La probabilité utilisée dans cette solution est exprimée dans
+la relation suivante :
+Pm =
+N − n
+N
+n
+Pmmax + N Pmmin
+(3.2)
+Les valeurs de Pmmax etPmmax sont respectivement la probabilité max et la probabilité min de la
+mutation.
+Le système en général est composé de deux étapes ou phases importantes : la sélection des caractéristiques
+des données, l'optimisation des paramètres et la pondération des caractéristiques des données.
+Tout ça est basé sur les algorithmes génétiques et le modèle SVM .
+La méthode de sélection des caractéristiques est initialisée par la génération des chromosomes codés
+en binaire ou le 1 représente une caractéristique sélectionnée et le 0 représente une caractéristique non
+sélectionnée. Ensuite, elle vient l'étape de création de modèle de détection d'intrusion SVM en utilisant les
+paramètres de décodage et les ensembles de données d'entraînement. L'évaluation de chaque chromosomes
+se fait en utilisant une fonction de fitness basée sur trois paramètres : les vrai positives (TPR), le taux
+d'erreur (Error) et le numéro des caractéristiques sélectionnées (NumF (S)).
+F itness(S) = W´aT P R + W´bErreur + W´cN um(S)
+(3.3)
+OÙ Wa′ , Wb′ et Wc′ représentent respectivement les valeurs de poids de TPR ,Error, NumF(S).
+L'algorithme AG s'arrête lorsqu'il atteint le nombre maximum d'itération (qui est fixé à 100 dans
+cet article) ou la valeur maximale de fitness actuelle mois la valeur maximale de fitness précédente est
+inférieure de 0.001. Si c'est le cas ,nous obtenons les sous ensemble des caractéristiques optimales en
+décodant le chromosome ayant le la valeur de fitness optimale .Sinon les opérations de la génération de
+la solution optimale ont continué à s'exécuter .
+Après la sélection de sous-ensemble des caractéristiques optimales , il reste à optimiser les paramètres
+du modèle SVM et la pondération des caractéristiques des données. La procédure commence par
+la génération des chromosomes des données originales, ensuite ces chromosomes sont transformés en paramètres
+du modèle SVM. La structure des chromosomes est encodé en nombre réelles, il contient les
+poids des caractéristiques non sélectionnés W1 . . . W2 et les paramètres du modèle SVM suivants :le
+paramètre C dans [C1, C2] qui représente la pénalité d'erreur dans le cas d'un problème non-séparable
+C = C1 + c ∗ (C2 − C1), le paramètre Y dans [Y1, Y2] qui est utilisé pour impliquer la distribution des
+données dans le nouvel espace des caractéristiques. Y = Y1 + y ∗ (Y2 − Y1). Chaque chromosome est évalué</zone>
+  <zone label="GEN_OTHER">38</zone>
+  <zone label="MET_BIB_INFO">3.2 Synthèse des travaux existants</zone>
+  <zone label="BODY_CONTENT">par la fonction de fitness suivante :
+F itness = ACC = T P + FT NP ++ TFNP + T N
+(3.4)
+Les résultats après le test montrent que l'amélioration de la fonction de fitness a aidé le SVM d'augmenter
+le taux des vrais positives TPR jusqu'à 94.53% et diminuer le taux d'erreur 2.4% et accélérer le
+taux de convergence jusqu'à 1.5.
+3.2.2
+Travaux de détection d'intrusion basés sur le modèle réseau de neurones
+artificielles et l'algorithme génétique
+Figure 3.1 - Shéma général de la solution proposée par Hosseinzadeh
+(Hossein zadeh moghadam, Mirabedini, &amp; Banirostam, 2017) ont proposé une solution qui combine le
+modèle de réseau de neurone feedback avec l'AG ou le système est supposé être un pare-feu afin de non
+seulement détecter le types d' intrusion mais aussi les empêcher de traverser le réseau, pour cette raison
+ils ont utilisé le modèle réseau de neurones feedback. Si 1% de réseau n'a pas pu détecter l'intrusion il peut
+revenir après un certain temp si l'opération malveillante se produit dans le réseau et revérifier l'attaques
+non détecté. La dynamicité de ce modèle ofre la possibilité d'apprendre à détecter et catégoriser les
+nouvelles attaques dans le réseau.
+l'utilisation de l'AG est orientée dans ce travail vers la phase prétraitement comme le montre le shéma
+de la Figure 3.1 afin de réduire la dimension des caractéristiques standards des données en éliminant les
+caractéristiques non nécessaires. Cette méthode d'élimination simplifie le problème de détection d'attaque
+et permet de minimiser le poid des neurones dans le but d'augmenter la précision de détection et minimiser</zone>
+  <zone label="GEN_OTHER">39</zone>
+  <zone label="MET_BIB_INFO">Chapitre 3 : Synthèse et étude comparative</zone>
+  <zone label="BODY_CONTENT">la consommation d'énergie dans le réseau.
+Le chromosome utilisé dans l'AG de cette solution est constitué de quatre gènes qui représentent les
+informations suivantes : le type d'intrusion, les facteurs autorisés dans le réseau, le Target qui représente
+l'enregistrement ou le noeud de destination et la source ou le port d'entrées de réseau. L'algorithme
+génétique dans cet article utilise la fonction de Merit dans la sélection des poids optimales des neurones
+et l'optimisation de la structure de réseau à partir des populations générées.
+F itness = 21 (x + p)
+p = 1n00 X(wi)
+(3.5)
+(3.6)
+La fonction de fitness représente une relation entre l'erreur moyen x et le pourcentage des poids totaux
+dans le réseau (connexions) p. Pour la deuxième fonction, le n représente le nombre des générations dans
+l'AG, le 100 est le nombre maximum de génération dans l'AG et le w est le poid des entrées dans le
+réseau.
+Pour le dataset utilisé dans cette solution proposée , il a utilisé le NSL-KDDCup99 comme datasets où
+80% est réservé pour l'entraînement et 20% pour le test. Tous les tests sont efectués sous l'environnement
+Matlab . Les résultats obtenus de cette méthode sont montrés dans le tableau 3.1 :</zone>
+  <zone label="BODY_HEADING">Taux de précision</zone>
+  <zone label="BODY_CONTENT">97.5%</zone>
+  <zone label="BODY_HEADING">Taux de rappel</zone>
+  <zone label="BODY_CONTENT">80%</zone>
+  <zone label="BODY_HEADING">Taux de Accuracy</zone>
+  <zone label="BODY_CONTENT">98.5%
+Table 3.1 - Résultats de performance de la solution proposé par Hosseinzadeh
+(Zhang, Li, &amp; Wang, 2019) ont essayé de construire un modèle de détection d'intrusions auto adaptatif
+pour détecter les diférentes types d'attaques avec une grande précision contrairement aux autres modèles
+traditionnelles de DL qui ciblent un seul type d'attaque, en utilisant le modèles DBN et les algorithmes
+génétiques. L'avantage du modèle DBN réside dans sa structure multi-couche et l'utilisation du fine-tuning
+comme méthode d'apprentissage dans le pré-entraînement. Les systèmes de détection d'intrusions basés
+sur les DBN selon (Zhang et al., 2019) ont résolu plusieurs problèmes existants dans les anciens systèmes
+comme la faible eficacité d'entraînement, le besoin d'une grande quantité de données étiquetées et le
+problème de tomber facilement dans l'optimum local. Dans le but d'obtenir des meilleurs performances
+de détection par le modèle DBN , ils ont utilisé l'AG pour générer le nombre optimal des couches cachées
+et le nombre optimal des noeuds dans chaque couches itérativement et pour chaque attaques jusqu'à
+arriver à la structure optimale et l'appliquer sur le modèle DBN . Les étapes de la solution sont exprimée
+dans la : Figure 3.2
+Ils ont utilisé le codage binaire pour coder le nombre des noeuds dans les trois couches dans le chromosome,
+donc ils ont divisé un chromosome de taille 18 bits en trois parties chacune représente le nombre
+de neurones dans chaque couche dont il doit être inférieure au nombre des caractéristiques d'entrée et
+supérieurs au nombre des sorties. Pour la sélection, ils ont utilisé la méthode de roulette Wheel(ou la
+méthode de Monte Carlo) avec une petite amélioration : ils ont sélectionné l'individu avec la plus grande
+valeur de fitness pour garantir qu'il va passer à la prochaine génération, après ils ont sélectionné les autres</zone>
+  <zone label="GEN_OTHER">40</zone>
+  <zone label="MET_BIB_INFO">3.2 Synthèse des travaux existants</zone>
+  <zone label="BODY_CONTENT">Figure 3.2 - Shéma général de la solution proposée par YING ZHANG
+41</zone>
+  <zone label="MET_BIB_INFO">Chapitre 3 : Synthèse et étude comparative</zone>
+  <zone label="BODY_CONTENT">individus avec la méthode de roulette Wheel. La fonction de fitness utilisée dans cette solution proposée
+est la suivante :
+(3.7)
+(3.8)
+(3.9)
+Où p représente le taux de détection de DBN :
+f = w1 ∗ p + w2 ∗ l + w3 ∗ (1 − σ ∗ )
+p =
+Ncorrent
+N all ∗ 100%
+w1, w2etw3 sont des poids qu'ils ont fixés après plusieurs tests à w1 = 0.995 w2 = 0.005 et w3 = 0.005 .
+Ncorrent représente le nombre de données correctement classifiées, et Nall représente le nombre total de
+données.
+σ ∗ représente déviation standard pour exprimer la complexité entre les couches cachés du DBN car
+plus le modèle est complexe plus il prend de temp pour l'entrainer et σ ∗ est sa normalisation :
+σ ∗ =
+σ − σ min
+sigmamax − sigmamin
+Dans la phase de mutation, ils ont adopté la méthode de PMC, pour ne pas tomber dans le problème
+du croisement entre deux chromosomes identiques qu'ils peuvent être sélectionnés à partir de la méthode
+de roulette, donc ils ont croisé le i-ème avec le (n/2 + i). Les individus peuvent avoir un nombre de
+couches cachés diférents donc pour éviter qu'il soit 0 ils ont sélectionné une couche commune entre
+les deux individus et complété les autres couches avec l'autre parent. Après ils ont utilisé la recherche
+aléatoire de mutation pour changer un bit dans chaque chromosome afin de garantir la diversité de la
+population .
+Pour éviter la disparition des meilleurs individus lors de l'application du croisement et du mutation,
+dans chaque itération ,(Zhang et al., 2019) ont comparé le meilleur individu A avec B (le meilleur individu
+apparaît jusqu'à maintenant ), si A &gt;= B, A passe directement à la prochaine itération sinon B remplace
+le mauvai individu et A passe directement à la prochaine itération. Le dataset utilisé dans l'entraînement
+de ce modèle est NSL-KDD (une version de KDDCUP99 ) qu'il contient les attaques suivants : Probe,
+DOS, U2R , R2L. Le modèle donne de très bons résultats comme le montre le tableau suivant avec un
+taux de détection de 99% .
+DOS</zone>
+  <zone label="BODY_HEADING">Probe</zone>
+  <zone label="BODY_CONTENT">R2L
+U2R
+Taux de précision(%)
+99.45
+99.37
+97.78
+998.68
+Taux de rappel(%)
+99.20
+99.30
+92.75
+98.20
+Taux de Accuracy(%)
+99.7
+99.4
+93.4
+98.2
+Table 3.2 - Résultats de performance de la solution proposé par YING ZHANG
+(Moukhafi, Yassini, Bri, &amp; Oufaska, 2018) Ont proposé un système de détection d'intrusion basé sur
+le modèle de SOM (carte auto-adaptative ) optimisé en utilisant l'AG et capable de détecter quatre
+types d'attaques : DOS, probe, U2R and R2L pour le dataset KDD99, et neufs types d'attaques à savoir
+Reconnaissance, Backdoor, DoS, Exploits, Analysis, Fuzzers, Worms, Shellcode, Generic pour le dataset</zone>
+  <zone label="GEN_OTHER">42</zone>
+  <zone label="MET_BIB_INFO">3.2 Synthèse des travaux existants</zone>
+  <zone label="BODY_CONTENT">UNSW-nb15. Le schéma de la figure 3.3 représente les diférentes étapes de la solution proposé :
+Figure 3.3 - Shéma général de la solution proposée par Moukhafi
+Les individus de l'AG sont des vecteurs de M-dimension, ils représentent les candidats de la solution.
+Le SOM est utilisé pour construire une large gamme de solutions et pour évaluer leurs performances dans
+chaque itération en entraînant le classifieur avec un individu et l'évaluer avec la fonction de fitness qui
+utilise la maximisation de la précision (Accuracy ) jusqu'à arriver à la solution optimale. Les individus
+ayant une grande valeur de fitness sont sélectionnés (la moitié de la population ) pour participer à la
+génération de la prochaine population.
+Pour la phase de croisement, ils ont utilisé la technique de 10-folds où ils divisent les données comme
+suit : 1 pour le test et 9 folds pour l'entraînement. Pour assurer que les individus sont diférents dans
+chaque itération ils ont appliqué la mutation aléatoirement en changeant 1% de gènes de chaque individu
+dans la population produite .
+Pour tester la solution ils ont utilisé UNSW-nb15 où 10% de KDD99 est conservé pour entraîner le
+système. La solution proposée a atteint 94.35% de précision (Accuracy) et un taux de détection de 99.69%
+pour le datasets KDD99. Pour le dataset UNSW-nb15, la solution a atteint 82.91% pour l'Accuracy avec
+89.43% de taux de détection.</zone>
+  <zone label="GEN_OTHER">43</zone>
+  <zone label="BODY_CONTENT">• la distance intra-groupe :
+• la fonction de fitness :
+k
+Ek = X X ||xi − zi||2
+j=1 i∈l
+Dk = max||xi − zi||2
+f itness(k) = k1 ∗ EEk1 ∗ Dk</zone>
+  <zone label="MET_BIB_INFO">Chapitre 3 : Synthèse et étude comparative</zone>
+  <zone label="BODY_CONTENT">3.2.3
+Travaux de détection d'intrusion basés sur le modèle amélioré de kmeans
+et l'algorithme génétique
+(Sukumar et al., 2018) ont développé un système de détection d'intrusion (IGKM) à base de modèle kmeans
+amélioré en utilisant l'AG dans la génération du nombre optimal des clusters k. IGKM est basé sur
+l'exécution de l'algorithme k-means génétique sur j sous-ensemble du datasets en reproduisant à chaque
+itération k' clusters et j groupes. Pour chaque sous-ensemble, ils ont calculé la distance intra-classe de
+chaque cluster en sélectant le min entre l'ensemble des distances minJ c comme étant un nouveau point
+d'initialisation Zj , j[1, k´]. Ce point est utilisé pour une autre exécution d'algorithme k-means génétique
+afin de produire k´ médiods. La réduction de nombre k est faite par une opération itérative qui consiste
+à fusionner deux clusters proches en un seul et recalculer le nouveau centre en fonction des deux anciens
+centres. Pour les chromosomes de la population utilisé dans l'AG, ils sont codés en nombres décimals qui
+représentent le nombre de clusters k. La fonction de fitness représente un rôle principal dans la génération
+du nombre optimal de cluster, elle est basé sur les distances inter et intra classes des clusters. La fonction
+consiste à minimiser le nombre de clusters le plus petit possible et maximiser la séparation.
+• la distance inter-groupe :le k représente le nombres des groupes (clusters) et Z est le centroid
+du cluster.
+Le datasets utilisé dans l'évaluation du système proposé est le KDD-99, mais il a été réduit de 42
+caractéristique à 6 caractéristiques pour optimiser le temp d'exécutions du programme. Cette optimisation
+est faite en combinant plusieurs types d'attaques.
+(Sukumar et al., 2018) a fait une étude comparative entre le système IGKM et k-means++ sur le KDD99
+pour simuler une large datasets et un sous ensemble de milliers d'instances . Les résultats obtenus sont
+présenté les tableaux 3.3 et 3.4 :
+• les résultats avec un sous ensemble de KDD-99 :
+K-means ++
+IGKM
+Taux de précision
+0.5008%
+35.2941%
+Taux de rappel
+00.4673%
+26.0870%
+Taux de Accuracy
+53.271028%
+26.086957%
+Table 3.3 - Les résultats avec un sous ensemble de KDD-99
+• les résultats avec le datasets KDD-99 :</zone>
+  <zone label="GEN_OTHER">44</zone>
+  <zone label="BODY_CONTENT">(3.10)
+(3.11)
+(3.12)</zone>
+  <zone label="MET_BIB_INFO">3.2 Synthèse des travaux existants</zone>
+  <zone label="BODY_CONTENT">K-means ++
+IGKM
+Taux de précision
+0.5566%
+35.2941%
+Taux de rappel
+0.4673%
+0.268869%
+Taux de Accuracy
+53.271028%
+72.913043%
+Table 3.4 - Les résultats avec le datasets KDD-99
+Les résultats montrent que le systèmes IGKM a donné une précisopn (Accuracy) très élevée en comparant
+avec l'algorithme k-means ++ avec l'utilisation d'une large datasets ainsi que l'utilisation de la
+fonction de fitness pour le calcule de nombre k de cluster a permet de réduire la complexité du temp
+d'exécution de IGKM par rapport à k-means ++ .
+3.2.4
+Travaux de détection d'intrusion basés sur les modèle d'arbre et l'algorithme
+génétique
+(Kasongo, 2021) a proposé un système d'IDS avancé dédié spécifiquement à l'IoT industrielle basée
+sur l'utilisation de L'AG pour la sélection des caractéristiques importantes et les modèles d'arbre pour
+la classification binaire et multi-classe de ces caractéristiques. La phase de prétraitement consiste généralement
+au nettoyage et à la normalisation des données de datasets. Dans cet article ils ont utilisé
+UNSW-NB15 comme datasets et la formule de normalisation des données est donnée par la formule 3.13 :
+xnorm = (p − q) maxxn(x− n) m−inm(xinn()xn) (3.13)
+où x représente une caractéristique donnée. Ensuite, les données sont prêtes à être sélectionnées en utilisant
+la méthode d'enveloppe basée sur l'AG. La fonction de fitness utilisée dans cette solution est la valeur de
+l'ACC obtenue par le modèle d'arbre aléatoire instancié en utilisant une trame de données et à ses valeurs.
+Les étapes de l'algorithme génétique (croisement, mutation, sélection)sont répétées jusqu'aux atteindre
+le nombre d'itération maximal en calculant à chaque fois la valeur de fitness optimale. le résultats obtenu
+consiste de deux vecteurs de caractéristiques : Vb = f1, f2, f3, f4, f5, f6, f7, f8, f9, f10 qui représente le
+groupe des solutions possible généré par l'AG pour la classification binaire et Vm = g1, g2, g3, g4, g5, g6, g7
+qui représente le groupe des solutions possibles générées par l'AG pour la classification multiple. Après
+cette phase, il reste l'implémentation des deux classifieurs :
+• Le classifieur binaire qui consiste à classer les caractéristiques en normal ou attaque en utilisant
+le vecteurs Vb. ils ont utilisé la régression logistique comme modèle de base et il ont implémenté les
+modèles suivants : l'arbre de décision DT,la forêt aléatoire RF, ET, et XGB . Les résultats montrent
+que le RF a atteint le meilleurs Accuracy avec 87.61% et VAC de 95.87%, RC de 98.34%, Précision
+de 82.51% et F1-score de 98.73%.
+• Le classifieur multi-classe : avec 10 classes en utilisant les attributs de vecteur Vm . ils ont
+utilisé Naive bayes comme un modèle de base ensuite, ils ont implanté les modèle d'arbre suivants :
+DT, RF,ET et XGB .les résultats montre que le meilleure modèle était ET VAC de 82.64% et TAC
+de 77.64%, RC de 83.09% PR de 77.64% et F1S de 80.27% .</zone>
+  <zone label="GEN_OTHER">45</zone>
+  <zone label="MET_BIB_INFO">Chapitre 3 : Synthèse et étude comparative</zone>
+  <zone label="BODY_CONTENT">3.3
+Etude comparative
+Dans ce qui suit, nous représentons un tableau récapitulatif comparant les travaux étudiés (cités dans
+ce rapport) en terme des techniques adoptées, de datasets utilisés , les types des attaques détectées ,les
+avantages et le inconvénients de chaque méthode et bien sur les performances de chaque systèmes : de la
+précision, le rappel, et la précision de classification (Accuracy).
+La référence
+(Sukumar
+et al.,
+2018)</zone>
+  <zone label="BODY_HEADING">La technique
+utilisé</zone>
+  <zone label="BODY_CONTENT">k-means
+et l'AG
+Le
+dataset
+KDD99
+types perforrmances
+des
+attaques
+DDoS, Pour un petit dataProbe,
+set :
+U2R :
+,R2L
+- Précision
+35,2941%
+- Rappel
+26,8869%
+- ACC
+26.086957%
+Pour un datasets
+large :
+- Précision
+35,294%
+- Rappel
+26,8869%
+- ACC
+72.913043%
+:
+:
+:
+:
+:</zone>
+  <zone label="GEN_OTHER">46</zone>
+  <zone label="BODY_HEADING">Avantages
+Inconvénients</zone>
+  <zone label="BODY_CONTENT">- Meilleurs
+résultats
+pour un large
+datasets
+- Une optimisation
+de temp
+d'exécution
+- Une mauvaise
+performance
+pour un petit
+dataset
+(Sukumar
+et al.,
+2018)
+les arbres
+et l'AG
+(RF,
+ET,et
+XGB)
+UNSW- Generic, le classifieur binaire
+NB15 Ex- avec le modèle
+ploits, arbre aléatoire :
+Dos, - Précision :
+Re- 82.51%
+con- - Rappel :
+nais- 98.34%
+sance,
+Shell- - ACC : 87.61%
+code. e classifieur multiWorms,
+classe ET
+Back- - Précision :
+door, 77.64%
+Ana- :
+lysis.
+- Rappel
+83.09%
+- ACC : 82.64%</zone>
+  <zone label="MET_BIB_INFO">3.3 Etude comparative</zone>
+  <zone label="BODY_CONTENT">- Les vecteur
+des attributs
+générés
+peuvent être
+appliqués
+avec n'importe
+quelle
+classifieur.
+- le classifieur
+multi-classée
+est moins performant
+que
+le classifieur
+binaire.</zone>
+  <zone label="GEN_OTHER">47</zone>
+  <zone label="MET_BIB_INFO">Chapitre 3 : Synthèse et étude comparative</zone>
+  <zone label="BODY_CONTENT">(Hossein za- Réseau
+deh mo- de neughadam
+rone
+et al., (feed2017)
+back) et
+l'algorithme
+génétique
+.
+NSLKDD
+DDoS
+,
+Probe
+,U2R
+,R2L
+- Précision
+97.5%
+:
+- Rappel : 80%
+- ACC : 98.5%</zone>
+  <zone label="GEN_OTHER">48</zone>
+  <zone label="BODY_CONTENT">- La réduction
+des erreurs de
+classification.
+- Le système
+est prévu
+pour être
+utilisé comme
+un pare-feu
+et si 1% des
+attaques sont
+non détectées
+il revient
+après un
+certain temps
+et revérifier le
+trafic afin de
+détecter cette
+1%.
+- l'utilisation
+de la grille
+feedback réduit
+le coût
+de calcul.
+L'utilisation
+de l'algorithme
+génétique
+pour
+la réduction
+des caractéristiques
+utilisées
+dans l'entraînement
+augmente
+le nombre
+d'erreurs et
+diminue la
+valeur de
+ACC.
+(Zhang et
+al., 2019)
+modèle
+DBN (réseau
+de
+croyance
+profond)et
+algorithm
+génétique)
+NSLKDD
+Probe,
+DOS,
+U2R ,
+R2L
+- Précision
+97.3625%
+- Rappel
+97.675%
+:
+:
+- ACC : 98.82%</zone>
+  <zone label="GEN_OTHER">49</zone>
+  <zone label="MET_BIB_INFO">3.3 Etude comparative</zone>
+  <zone label="BODY_CONTENT">Le modèle détecte
+l'intrusion
+mais il
+ne précise pas
+son type .
+- Le système
+proposé est
+basé sur le
+modèle auto
+adaptatif
+qui permet
+d'adapter
+la structure
+de réseau
+de neurones
+selon le type
+d'attaque.
+- Le temps
+d'entraînement
+est
+réduit sans
+l'afectation
+des performances
+du
+modèle .
+- Le système
+peut atteindre
+une
+grande performance
+même pour
+les attaques
+ayant une
+fréquence
+basse ou un
+nombre bas
+d'instance de
+données.</zone>
+  <zone label="MET_BIB_INFO">Chapitre 3 : Synthèse et étude comparative</zone>
+  <zone label="BODY_CONTENT">(Moukhafi
+et al.,
+2018)
+carte
+autoadaptative
+et l'algorithme
+génétique
+(Tao et
+al., 2018)
+le modèle
+d'apprentissage
+automatique
+et
+l'algorithme
+génétique
+KDD- Probe,
+99 et DOS,
+UNSW- U2R ,
+nb15 R2L,
+Recon-
+naissance,
+Backdoor,
+DoS,
+Exploits,
+Analysis,
+Fuzzers,
+Worms,
+Generic
+KDD Probe,
+99 DOS,
+U2R ,
+R2L
+Pour KDD-99
+- Précision
+99.7%
+- Rappel
+79.165%
+- ACC : 94.35%
+Pour UNSW-nb15
+- Précision
+89.43%
+- Rappel
+88.41%
+- ACC : 82.91%
+Pour KDD-99
+- Précision
+100%
+- Rappel
+94.53%
+- ACC : 99.75%
+:
+:
+:
+:
+:</zone>
+  <zone label="MET_CATEGORY">:</zone>
+  <zone label="BODY_CONTENT">Table 3.5: Tableau comparatif des travaux existants</zone>
+  <zone label="GEN_OTHER">50</zone>
+  <zone label="BODY_CONTENT">- Une bonne
+performance
+en testant le
+système avec
+deux datasets
+KDD-99
+,UNSW-nb15
+.
+- La capacité
+de détecter
+les nouveaux
+attaques ou
+les attaques
+inconnues
+- Le système
+a réduit le
+temp d'entraînement
+et
+de test.
+- Augmenter la
+convergence
+d'algorithme.
+- Résoudre les
+problèmes
+de la non
+linéarité , la
+grande dimensionnalité
+et les petits
+échantillons .
+Le système
+ne précise
+pas le type
+d'attaque
+détectée
+besoins de
+sélectionner
+les caractéristiques
+du
+dataset.</zone>
+  <zone label="MET_BIB_INFO">3.4 Conclusion</zone>
+  <zone label="BODY_CONTENT">3.4
+Conclusion
+Dans ce chapitre, nous avons exposé les diférents travaux existants sur les systèmes d'IDS qui utilisent
+les diférents modèles d'apprentissage automatique en combinaison avec les algorithmes génétiques.Nous
+avons expliqué brièvement le fonctionnement générale de chaque solution proposée et les résultats obtenus.Ensuite,
+nous avons efectué une comparaison entres les travaux en montrant les avantages et les
+inconvénient de chaqu'une.</zone>
+  <zone label="GEN_OTHER">51</zone>
+  <zone label="BODY_CONTENT">Conclusion Générale
+Ce rapport de master est consacré pour l'étude des systèmes de détection d'intrusion dans les systèmes
+IoT en utilisant les algorithmes génétiques. Nous rappelons les objective de cette étude qui sont la
+réalisation d'un état de l'art sur la problématique précédente, la présentation des travaux existants avec
+une comparaison de ces travaux . Nous avons divisé notre rapport en trois parties : deux chapitres qui
+traitent les notions théoriques, et un qui présente une synthèse des travaux.
+Le premier chapitre de notre étude a entamé la notion de l'internet des objets, sa définition,son
+architecture générale et ses diférentes applications. Dans le même chapitre nous avons abordé le sujet
+de la sécurité des systèmes IoT en citant les diférentes exigences pour assurer une bonne sécurité, et les
+défis qui empêchent cette sécurité. Nous avons catégorisé par la suite les diférentes attaques qui menacent
+les systèmes IoT par couche et nous avons mentionné les diférents mécanismes de défenses utilisés pour
+lutter contre les attaques et les piratages qui traversent le système et influencent son fonctionnement.
+Parmi ces mécanisme nous avons détaillé les systèmes de détection d'intrusion (le sujet de notre étude)
+en présentant ce qui sont les systèmes IDS, leur fonctionnement, les techniques de détection utilisés, les
+types des IDSs, et les diférentes défis et limites de ces systèmes qu'il faut les prendre en considération
+pour l'amélioration de ces systèmes. Nous avons étudié aussi les diférents datasets les plus utilisés dans
+le test et l'évaluation des IDS et nous avons efectué une comparaison entres ces datasets en précisant les
+avantages et les inconvénients de chacune. Enfin nous avons présenté les diférentes métriques utilisées
+dans l'évaluation des modèles d'apprentissage automatiques.
+Dans le deuxième chapitre, nous avons abordé deux technologies utilisées dans la réalisation des systèmes
+de détection d'intrusions : l'apprentissage automatique et les algorithmes génétiques. Dans un
+premier lieu, nous avons introduit les algorithmes génétiques et nous avons détaillé leurs fonctionnement.
+Dans un autre lieu, nous avons défini l'apprentissage automatique et ses diférentes techniques d'apprentissage.
+Ensuite nous avons exposé les diférents modèles les plus connus et les plus utilisés dans le
+domaine d'IDS et même les autres domaines d'application. Dans cette partie nous nous somme intéressés
+par le modèle de réseau de neurones dont nous avons présenté sa structure, son fonctionnement et ses
+diférentes architectures.
+Le troisième chapitre a été conservé pour la présentation des travaux existants dans la réalisation des
+systèmes de détection d'intrusion en utilisant les algorithmes génétiques et l'apprentissage automatique
+suivis par un tableau comparatif qui a étudié les avantages et les inconvénients de chaque technique
+utilisée et les résultats et les performances obtenus.
+Cette étude bibliographique nous a permis d'acquérir les notions nécessaires pour comprendre le</zone>
+  <zone label="GEN_OTHER">52</zone>
+  <zone label="MET_BIB_INFO">3.4 Conclusion</zone>
+  <zone label="BODY_CONTENT">fonctionnement des systèmes de détection d'intrusion comme elle nous a mis au courant sur les travaux
+réalisés dans ce domaine.</zone>
+  <zone label="GEN_OTHER">53</zone>
+  <zone label="MET_BIB_INFO">Bibliographie</zone>
+  <zone label="GEN_REFERENCES">Asharf, J., Moustafa, N., Khurshid, H., Debie, E., Haider, W., &amp; Wahab, A. (2020). A review of intrusion
+detection systems using machine and deep learning in internet of things : challenges, solutions and
+future directions. Electronics , 9 (7), 1177.
+Chaabouni, N. (2020). Intrusion detection and prevention for iot systems using machine learning (Thèse
+de doctorat non publiée). Université de Bordeaux.
+Chatterjee, R. (2021, 10). Introduction to genetic algorithm (ga) :
+https ://github.com/cserajdeep/geneticalgorithmdemo.
+doi: 10.13140/RG.2.2.12163.43042
+Czekalski, P., Kapitonov, A., Dobriborsci, D., Pantiukhin, I., Chernov, V., Sell, R., . . . Longo Minnolo, A.
+(2019). Introduction to the iot.
+Davahli, A., Shamsi, M., &amp; Abaei, G. (2020). Hybridizing genetic algorithm and grey wolf optimizer to advance
+an intelligent and lightweight intrusion detection system for iot wireless networks. Journal of Ambient
+Intelligence and Humanized Computing , 11 (11), 5581-5609.
+David, S. (2018, 12). Eficient intrusion detection using machine learning techniques. Journal of Advanced
+Research in Dynamical and Control Systems .
+Divekar, A., Parekh, M., Savla, V., Mishra, R., &amp; Shirole, M. (2018). Benchmarking datasets for anomalybased
+network intrusion detection : Kdd cup 99 alternatives. In 2018 ieee 3rd international conference
+on computing, communication and security (icccs) (pp. 1-8).</zone>
+  <zone label="BODY_CONTENT">DJEDDOU, M. (2014). Prediction of failure rate with artificial neural networks in a wastewater treatment
+plantf renchcopy (T hsededoctorat). doi :
+Djeriri, Y. (2017, 09). Les réseaux de neurones artificiels..
+Domashova, J. V., Emtseva, S. S., Fail, V. S., &amp; Gridin, A. S. (2021). Selecting an optimal architecture
+of neural network using genetic algorithm. Procedia Computer Science , 190 , 263-273.
+Driss, M., Hasan, D., Boulila, W., &amp; Ahmad, J. (2021). Microservices in iot security : current solutions,
+research challenges, and future directions. Procedia Computer Science , 192 , 2385-2395.
+Elrawy, M. F., Awad, A. I., &amp; Hamed, H. F. (2018). Intrusion detection systems for iot-based smart
+environments : a survey. Journal of Cloud Computing , 7 (1), 1-20.
+Firouzi, F., Farahani, B., Weinberger, M., DePace, G., &amp; Aliee, F. S. (2020). Iot fundamentals : definitions,
+architectures, challenges, and promises. In Intelligent internet of things (pp. 3-50). Springer.
+García-Martínez, C., Rodriguez, F. J., &amp; Lozano, M. (2018). Genetic algorithms.
+Godquin, T. (2020). Sécurisation adaptative des objets de l'iot par méthodes logicielles (white box) et
+combinées (hardware et software) (Thèse de doctorat non publiée).</zone>
+  <zone label="GEN_OTHER">54</zone>
+  <zone label="MET_BIB_INFO">Bibliographie</zone>
+  <zone label="BODY_CONTENT">Gokhale, P., Bhat, O., &amp; Bhat, S. (2018). Introduction to iot. International Advanced Research Journal
+in Science, Engineering and Technology , 5 (1), 41-44.</zone>
+  <zone label="GEN_REFERENCES">Hamid, Y., Balasaraswathi, V. R., Journaux, L., &amp; Sugumaran, M. (2018). Benchmark datasets for
+network intrusion detection : A review. Int. J. Netw. Secur., 20 (4), 645-654.</zone>
+  <zone label="BODY_CONTENT">Hossein zadeh moghadam, M., Mirabedini, S. J., &amp; Banirostam, T. (2017). A new method for intrusion
+detection using genetic algorithm and neural network. Journal of Advances in Computer Engineering
+and Technology , 3 (4), 213-222.
+Kasongo, S. M. (2021). An advanced intrusion detection system for iiot based on ga and tree based
+algorithms. IEEE Access , 9 , 113199-113212.
+Katoch, S., Chauhan, S. S., &amp; Kumar, V. (2021). A review on genetic algorithm : past, present, and
+future. Multimedia Tools and Applications , 80 (5), 8091-8126.
+Khan, M. A., &amp; Salah, K. (2018). Iot security : Review, blockchain solutions, and open challenges. Future
+generation computer systems , 82 , 395-411.
+Khraisat, A., Gondal, I., Vamplew, P., &amp; Kamruzzaman, J. (2019). Survey of intrusion detection systems :
+techniques, datasets and challenges. Cybersecurity , 2 (1), 1-22.
+Khraisat, A., Gondal, I., Vamplew, P., Kamruzzaman, J., &amp; Alazab, A. (2019). A novel ensemble of
+hybrid intrusion detection system for detecting internet of things attacks. Electronics , 8 (11), 1210.
+Kocher, G., &amp; Kumar, G. (2021). Machine learning and deep learning methods for intrusion detection
+systems : recent developments and challenges. Soft Computing , 25 (15), 9731-9763.
+Kumar, V., Sinha, D., Das, A. K., Pandey, S. C., &amp; Goswami, R. T. (2020). An integrated rule based
+intrusion detection system : analysis on unsw-nb15 data set and the real time online dataset. Cluster
+Computing , 23 (2), 1397-1418.
+Maleh, Y. (2020). Machine learning techniques for iot intrusions detection in aerospace cyber-physical
+systems. In Machine learning and data mining in aerospace technology (pp. 205-232). Springer.
+Mandal, K., Rajkumar, M., Ezhumalai, P., Jayakumar, D., &amp; Yuvarani, R. (2020). Improved security
+using machine learning for iot intrusion detection system. Materials Today : Proceedings .
+Meena, G., &amp; Choudhary, R. R. (2017). A review paper on ids classification using kdd 99 and nsl
+kdd dataset in weka. In 2017 international conference on computer, communications and electronics
+(comptelix) (pp. 553-558).
+Mehboob, U., Qadir, J., Ali, S., &amp; Vasilakos, A. (2016). Genetic algorithms in wireless networking :
+techniques, applications, and issues. Soft Computing , 20 (6), 2467-2501.
+Mohamed, T., Otsuka, T., &amp; Ito, T. (2018). Towards machine learning based iot intrusion detection
+service. In International conference on industrial, engineering and other applications of applied intelligent
+systems (pp. 580-585).</zone>
+  <zone label="GEN_OTHER">55</zone>
+  <zone label="MET_BIB_INFO">Bibliographie</zone>
+  <zone label="BODY_CONTENT">Moukhafi, M., Yassini, K. E., Bri, S., &amp; Oufaska, K. (2018). Artificial neural network optimized by genetic
+algorithm for intrusion detection system. In International conference on advanced intelligent systems for
+sustainable development (pp. 393-404).
+Othman, S. M., Alsohybe, N. T., Ba-Alwi, F. M., &amp; Zahary, A. T. (2018). Survey on intrusion detection
+system types. International Journal of Cyber-Security and Digital Forensics , 7 (4), 444-463.
+Patel, K. K., Patel, S. M., et al. (2016). Internet of things-iot : definition, characteristics, architecture,
+enabling technologies, application &amp; future challenges. International journal of engineering science and
+computing , 6 (5).
+Pendleton, M., &amp; Xu, S. (2017). A dataset generator for next generation system call host intrusion
+detection systems. In Milcom 2017-2017 ieee military communications conference (milcom) (pp. 231236).
+Rajaallah, E. M., Chamkar, S. A., &amp; Ain El Hayat, S. (2018). Intrusion detection systems : To an optimal
+hybrid intrusion detection system. In International conference on advanced information technology,
+services and systems (pp. 284-296).
+Rayes, A., &amp; Salam, S. (2017). The internet in iot-osi, tcp/ip, ipv4, ipv6 and internet routing. In
+Internet of things from hype to reality (pp. 35-56). Springer.
+Rizk, Y., Hajj, N., Mitri, N., &amp; Awad, M. (2019). Deep belief networks and cortical algorithms : A
+comparative study for supervised classification. Applied computing and informatics , 15 (2), 81-93.
+Shahid, M. R. (2021). Deep learning for internet of things (iot) network security (Thèse de doctorat non
+publiée). Institut Polytechnique de Paris.
+Sharafaldin, I., Gharib, A., Lashkari, A. H., &amp; Ghorbani, A. A. (2018). Towards a reliable intrusion
+detection benchmark dataset. Software Networking , 2018 (1), 177-200.
+Siddique, K., Akhtar, Z., Khan, F. A., &amp; Kim, Y. (2019). Kdd cup 99 data sets : a perspective on the
+role of data sets in network intrusion detection research. Computer , 52 (2), 41-51.
+Sukumar, J. A., Pranav, I., Neetish, M., &amp; Narayanan, J. (2018). Network intrusion detection using
+improved genetic k-means algorithm. In 2018 international conference on advances in computing, communications
+and informatics (icacci) (pp. 2441-2446).
+Tao, P., Sun, Z., &amp; Sun, Z. (2018). An improved intrusion detection algorithm based on ga and svm.
+Ieee Access , 6 , 13624-13631.
+Tesink, S. (2007). Improving intrusion detection systems through machine learning. Group,(07). www.
+bughunt. org/thesis_lai. pdf .
+Thakkar, A., &amp; Lohiya, R. (2020). A review of the advancement in intrusion detection datasets. Procedia
+Computer Science, 167 , 636-645.</zone>
+  <zone label="GEN_OTHER">56</zone>
+  <zone label="MET_BIB_INFO">Bibliographie</zone>
+  <zone label="BODY_CONTENT">Thakkar, A., &amp; Lohiya, R. (2021). A survey on intrusion detection system : feature selection, model,
+performance measures, application perspective, challenges, and future research directions. Artificial
+Intelligence Review , 1-111.
+Varanasi, V. R., &amp; Razia, S. (2019). Intrusion detection using machine learning and deep learning. Int
+J Recent Technol Eng .
+Vijayarani, S., Sylviaa, M., et al. (2015). Intrusion detection system-a study. International Journal of
+Security, Privacy and Trust Management (IJSPTM) Vol , 4 , 31-44.</zone>
+  <zone label="MET_DATES">Xavier, C., Amorim, E., Vieira, V., &amp; Santos, R. (2013, 12). Genetic algorithm for the history matching
+problem. Procedia Computer Science , 18 , 946-955. doi: 10.1016/j.procs.2013.05.260</zone>
+  <zone label="BODY_CONTENT">Yavanoglu, O., &amp; Aydos, M. (2017). A review on cyber security datasets for machine learning algorithms.
+In 2017 ieee international conference on big data (big data) (pp. 2186-2193).
+Zhang, Y., Li, P., &amp; Wang, X. (2019). Intrusion detection for iot based on improved genetic algorithm
+and deep belief network. IEEE Access , 7 , 31711-31722.
+Zitta, T., Neruda, M., Vojtech, L., Matejkova, M., Jehlicka, M., Hach, L., &amp; Moravec, J. (2018). Penetration
+testing of intrusion detection and prevention system in low-performance embedded iot device. In
+2018 18th international conference on mechatronics-mechatronika (me) (pp. 1-5).
+Zoghi, Z., &amp; Serpen, G. (2021). Unsw-nb15 computer security dataset : Analysis through visualization.
+arXiv preprint arXiv :2101.05067 .</zone>
+  <zone label="GEN_OTHER">57</zone>
+  <zone label="MET_BIB_INFO">Webographie
+Web 01. (s. d.). Consulté sur http://igm.univ-mlv.fr/~dr/XPOSE2013/tleroux_genetic_algorithm/
+fonctionnement.html
+Web 02. (s. d.). Consulté le 5.02.2022, sur https://stringfixer.com/fr/Mutation_(genetic
+_algorithm)
+Web 03. (s. d.). Consulté le 9/3/2022, sur https://www.universalis.fr/encyclopedie/reseaux-de
+-neurones-formels/
+Web 04. (s. d.). Consulté sur https://towardsdatascience.com/a-step-by-step-implementation
+-of-gradient-descent-and-backpropagation-d58bda486110
+Web 05. (s. d.). Consulté sur https://mindmajix.com/artificial-neural-network-and-how-it
+-works
+Web 06. (s. d.). Consulté sur https://www.kdnuggets.com/2019/12/5-techniques-prevent
+-overfitting-neural-networks.html
+Web 07. (s. d.). Consulté le 15/2/2022, sur https://www.ibm.com/cloud/learn/convolutional
+-neural-networks
+Web 08. (s. d.). Consulté le 20/2/2022, sur https://github.com/brohrer/public-hosting/raw/
+master/How_CNNs_work.pdf
+Web 09. (s. d.). Consulté sur https://github.com/brohrer/public-hosting/raw/master/How_CNNs
+_work.pdf
+Web 10. (s. d.). Consulté sur https://analyticsindiamag.com/beginners-guide-to-self
+-organizing-maps/
+Web 11. (s. d.). Consulté sur https://developer.ibm.com/articles/cc-machine-learning-deep
+-learning-architectures/
+Web 12. (s. d.). Consulté sur https://developer.ibm.com/articles/cc-machine-learning-deep
+-learning-architectures/
+Web 13. (s. d.). Consulté sur https://fr.wikibooks.org/w/index.php?curid=8649
+Web 14. (s. d.). Consulté sur https://m.20-bal.com/law/12648/index.html?page=11
+Web 15. (s. d.). Consulté le 10/12/2021, sur https://www.juripredis.com/fr/blog/id-19
+-demystifier-le-machine-learning-partie-2-les-reseaux-de-neurones-artificiels
+Web 16. (s. d.). Consulté le 10/12/2021, sur https://www.juripredis.com/fr/blog/id-19
+-demystifier-le-machine-learning-partie-2-les-reseaux-de-neurones-artificiels
+Web 17. (s. d.). Consulté le 11/12/2021, sur https://www.juripredis.com/fr/blog/id-19
+-demystifier-le-machine-learning-partie-2-les-reseaux-de-neurones-artificiels</zone>
+  <zone label="GEN_OTHER">58</zone>
+</document>
