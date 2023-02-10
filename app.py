@@ -53,7 +53,7 @@ def upload_file():
 
             #os.remove(cermine_file)
             #return render_template('result.html', data=data)
-            return str(CERMINE.extract_cermine(cermine_file))
+            return CERMINE.extract_cermine(cermine_file)
             return send_from_directory(cermine_file)
     return send_from_directory("./templates", "upload.html")
 
